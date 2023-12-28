@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tokkozhin/ankipro-react-native-canvas-view.git"
+    "url": "git+https://github.com/AnkiPro/ankipro-react-native-canvas-view.git"
   },
-  "author": "AnkiPro <dan.t.a@mail.ru> (https://github.com/tokkozhin)",
+  "author": "AnkiPro (https://github.com/AnkiPro)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tokkozhin/ankipro-react-native-canvas-view/issues"
+    "url": "https://github.com/AnkiPro/ankipro-react-native-canvas-view/issues"
   },
-  "homepage": "https://github.com/tokkozhin/ankipro-react-native-canvas-view#readme",
+  "homepage": "https://github.com/AnkiPro/ankipro-react-native-canvas-view#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

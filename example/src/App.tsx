@@ -1,12 +1,44 @@
-import * as React from 'react';
-
-import { StyleSheet, View } from 'react-native';
-import { ReactNativeCanvasViewView } from '@ankipro/react-native-canvas-view';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, StyleSheet, View } from 'react-native';
+import CanvasDrawView, {
+  type CanvasViewRef,
+  type CanvasViewUndoRedo,
+} from '@ankipro/react-native-canvas-view';
 
 export default function App() {
+  const canvasViewRef = useRef<CanvasViewRef>(null);
+  const [undoRedo, setUndoRedo] = useState<CanvasViewUndoRedo>({
+    canUndo: false,
+    canRedo: false,
+  });
+
+  useEffect(() => {
+    canvasViewRef.current?.showToolbar();
+  }, []);
+
+  const performSave = () => {
+    canvasViewRef.current?.getDrawingBase64((base64) => {
+      console.log('Canvas base64: ', base64);
+    });
+  };
+
+  const undo = () => canvasViewRef.current?.undo();
+
+  const redo = () => canvasViewRef.current?.redo();
+
   return (
     <View style={styles.container}>
-      <ReactNativeCanvasViewView color="#32a852" style={styles.box} />
+      <View style={styles.header}>
+        <Button title="Undo" onPress={undo} disabled={!undoRedo.canUndo} />
+        <Button title="Save" onPress={performSave} />
+        <Button title="Redo" onPress={redo} disabled={!undoRedo.canRedo} />
+      </View>
+
+      <CanvasDrawView
+        ref={canvasViewRef}
+        style={styles.canvas}
+        onUndoRedoChange={setUndoRedo}
+      />
     </View>
   );
 }
@@ -14,12 +46,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  header: {
+    position: 'absolute',
+    top: 60,
+    left: 20,
+    right: 20,
+    flexDirection: 'row',
+    zIndex: 1,
+    justifyContent: 'space-between',
+  },
+  canvas: {
+    flex: 1,
   },
 });

@@ -1,26 +1,74 @@
+import React, {
+  Component,
+  type ForwardedRef,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  type ViewStyle,
+  findNodeHandle,
+  type NativeMethods,
+  NativeModules,
 } from 'react-native';
 
-const LINKING_ERROR =
-  `The package '@ankipro/react-native-canvas-view' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+import {
+  type CanvasViewRef,
+  type CanvasViewProps,
+  type RNTCanvasViewProps,
+  type RNTUndoRedoChangeEvent,
+} from './types';
+import RNTCanvasView from './RNTCanvasView';
 
-type ReactNativeCanvasViewProps = {
-  color: string;
-  style: ViewStyle;
-};
+type RefType = Component<RNTCanvasViewProps> & Readonly<NativeMethods>;
 
-const ComponentName = 'ReactNativeCanvasViewView';
+function CanvasView(
+  { onUndoRedoChange, style }: CanvasViewProps,
+  ref: ForwardedRef<CanvasViewRef>
+) {
+  const canvasViewRef = useRef<RefType>(null);
 
-export const ReactNativeCanvasViewView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<ReactNativeCanvasViewProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+  useImperativeHandle(ref, () => ({
+    showToolbar: () => {
+      NativeModules.RNTCanvasView.showToolbar(
+        findNodeHandle(canvasViewRef.current)
+      );
+    },
+    hideToolbar: () => {
+      NativeModules.RNTCanvasView.hideToolbar(
+        findNodeHandle(canvasViewRef.current)
+      );
+    },
+    undo: () => {
+      NativeModules.RNTCanvasView.undo(findNodeHandle(canvasViewRef.current));
+    },
+    redo: () => {
+      NativeModules.RNTCanvasView.redo(findNodeHandle(canvasViewRef.current));
+    },
+    getDrawingBase64: (onComplete) => {
+      NativeModules.RNTCanvasView.getDrawing(
+        findNodeHandle(canvasViewRef.current),
+        onComplete
+      );
+    },
+  }));
+
+  const handleOnUndoRedoChange = ({ nativeEvent }: RNTUndoRedoChangeEvent) => {
+    onUndoRedoChange(nativeEvent);
+  };
+
+  return RNTCanvasView ? (
+    <RNTCanvasView
+      ref={canvasViewRef}
+      style={style}
+      onUndoRedoChange={handleOnUndoRedoChange}
+    />
+  ) : null;
+}
+
+export default forwardRef(CanvasView);
+
+export type {
+  CanvasViewRef,
+  CanvasViewProps,
+  CanvasViewUndoRedo,
+} from './types';

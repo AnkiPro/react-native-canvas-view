@@ -2,21 +2,30 @@
 
 React Native canvas drawing view for iOS
 
+<img src="./assets/demo.png" alt="canvas demo" width="200"/>
+
 ## Installation
 
 ```sh
-npm install @ankipro/react-native-canvas-view
+yarn add @ankipro/react-native-canvas-view
+```
+... and pods
+```sh
+npx pod-install
 ```
 
-## Usage
+
+## Basic usage
 
 ```js
-import { ReactNativeCanvasViewView } from "@ankipro/react-native-canvas-view";
+import CanvasView from "@ankipro/react-native-canvas-view";
 
 // ...
 
-<ReactNativeCanvasViewView color="tomato" />
+<CanvasView ref={canvasRef} />
 ```
+
+see [example](./example/src/App.tsx)
 
 ## Contributing
 
