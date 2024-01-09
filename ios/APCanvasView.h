@@ -1,5 +1,3 @@
-// Copyright © 2023 Vedas Apps Ltd. All rights reserved.
-
 #import <UIKit/UIKit.h>
 
 #import <React/RCTComponent.h>

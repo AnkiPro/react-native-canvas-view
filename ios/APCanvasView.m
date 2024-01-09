@@ -1,5 +1,3 @@
-// Copyright © 2023 Vedas Apps Ltd. All rights reserved.
-
 #import "APCanvasView.h"
 
 #import <PencilKit/PencilKit.h>
