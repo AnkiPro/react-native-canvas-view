@@ -14,9 +14,9 @@
     "react-native": "0.73.1"
   },
   "devDependencies": {
-    "@babel/core": "7.20.0",
-    "@babel/preset-env": "7.20.0",
-    "@babel/runtime": "7.20.0",
+    "@babel/core": "7.23.6",
+    "@babel/preset-env": "7.23.6",
+    "@babel/runtime": "7.23.6",
     "@react-native/babel-preset": "0.73.18",
     "@react-native/metro-config": "0.73.2",
     "@react-native/typescript-config": "0.73.1",
