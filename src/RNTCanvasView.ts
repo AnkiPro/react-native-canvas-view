@@ -11,8 +11,9 @@ const NativeComponentName = 'RNTCanvasView';
 
 let RNTCanvasView: HostComponent<RNTCanvasViewProps> | undefined;
 if (NativeComponentName in NativeModules.UIManager) {
-  RNTCanvasView =
-    requireNativeComponent<RNTCanvasViewProps>(NativeComponentName);
+  RNTCanvasView = requireNativeComponent<RNTCanvasViewProps>(
+    NativeComponentName
+  );
 } else {
   throw new Error(LINKING_ERROR);
 }

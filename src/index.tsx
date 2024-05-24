@@ -1,21 +1,17 @@
 import React, {
   Component,
-  type ForwardedRef,
   forwardRef,
   useImperativeHandle,
   useRef,
 } from 'react';
-import {
-  findNodeHandle,
-  type NativeMethods,
-  NativeModules,
-} from 'react-native';
-
-import {
-  type CanvasViewRef,
-  type CanvasViewProps,
-  type RNTCanvasViewProps,
-  type RNTUndoRedoChangeEvent,
+import type { ForwardedRef } from 'react';
+import type { NativeMethods } from 'react-native';
+import { findNodeHandle, NativeModules } from 'react-native';
+import type {
+  CanvasViewRef,
+  CanvasViewProps,
+  RNTCanvasViewProps,
+  RNTUndoRedoChangeEvent,
 } from './types';
 import RNTCanvasView from './RNTCanvasView';
 
