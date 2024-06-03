@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
-import CanvasDrawView, {
-  type CanvasViewRef,
-  type CanvasViewUndoRedo,
+import CanvasDrawView from '@ankipro/react-native-canvas-view';
+import type {
+  CanvasViewRef,
+  CanvasViewUndoRedo,
 } from '@ankipro/react-native-canvas-view';
 
 export default function App() {
