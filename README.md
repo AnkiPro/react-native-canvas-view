@@ -12,6 +12,8 @@ React Native library for drawing on iOS, leveraging the power of [Apple PencilKi
 
 <img src="./assets/demo.png" alt="canvas demo" width="200"/>
 
+Made with 💙 by [Anki Pro](https://ankipro.net/) team
+
 ## Installation
 
 ```sh
@@ -40,7 +42,7 @@ For more information see [example](./example/src/App.tsx).
 Name | Type | Description
 -|-|-
 ref | CanvasViewRef | See methods [below](#methods)
-style | ViewStyle | Base RN View style 
+style | ViewStyle | Base RN View style
 onUndoRedoChange | (undoRedo: {canUndo: boolean; canRedo: boolean}) => void | Check ability undo/redo
 
 ## Methods
@@ -59,7 +61,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT 
+MIT
 
 ---
 
